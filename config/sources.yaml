@@ -1,0 +1,86 @@
+# Source registry.
+#
+# Common keys:
+#   name           unique id (shown in the email)
+#   type           arxiv | hf_papers | hackernews | journal (alias: rss)
+#   tier           1 = top journal / editorial, 2 = curated or community signal,
+#                  3 = raw firehose (arXiv: every paper, no quality filter)
+#   weight         overrides the tier weight in scoring (optional)
+#   category_hint  key from scoring.yaml categories (optional, nudges classification)
+#   enabled        default true
+#   options        type-specific settings
+
+sources:
+  # ---------------------------------------------------------------- preprints
+  - name: arXiv
+    type: arxiv
+    tier: 3
+    options:
+      # https://arxiv.org/category_taxonomy  — one feed, cross-lists are merged.
+      categories: [cs.AI, cs.LG, cs.CL, cs.CV, cs.CR, cs.SE, cs.DC, stat.ML]
+      announce_types: [new, cross]   # replace = new version of an old paper: skipped
+
+  # ---------------------------------------------------------------- community signal
+  - name: HF Papers
+    type: hf_papers
+    tier: 2
+    category_hint: ml
+    options:
+      min_upvotes: 10     # re-fetched every collect, so papers appear once they get here
+      days: 2
+
+  - name: Hacker News
+    type: hackernews
+    tier: 2
+    options:
+      min_points: 30
+      lookback_hours: 48
+      domains: [arxiv.org, openreview.net, nature.com, science.org, biorxiv.org, aclanthology.org]
+
+  # ---------------------------------------------------------------- journals
+  - name: Nature
+    type: journal
+    tier: 1
+    category_hint: science
+    url: https://www.nature.com/nature.rss
+    options:
+      url_include: '/articles/s41586'   # research articles only (d41586 = news, comment)
+
+  - name: Nature Machine Intelligence
+    type: journal
+    tier: 1
+    category_hint: ml
+    url: https://www.nature.com/natmachintell.rss
+    options:
+      url_include: '/articles/s42256'
+
+  # More examples (any RSS/Atom feed works with type: journal):
+  # - name: Nature Communications
+  #   type: journal
+  #   tier: 2
+  #   url: https://www.nature.com/ncomms.rss
+  #   options: {url_include: '/articles/s41467'}
+  # - name: bioRxiv Bioinformatics
+  #   type: journal
+  #   tier: 3
+  #   category_hint: science
+  #   url: https://connect.biorxiv.org/biorxiv_xml/bioinformatics
+
+# Enrichers run after every collect over papers already stored.
+enrichers:
+  # Author comments ("Accepted at ICLR 2027", code links) + primary category.
+  # Respects arXiv's 1 request / 3 s rule; ~10 requests for a full day.
+  - name: arXiv metadata
+    type: arxiv_meta
+    options:
+      batch_size: 100
+      delay_seconds: 3
+
+  # Citation counts and max author h-index. Semantic Scholar indexes new papers
+  # with a 1-2 day delay, so this mostly helps papers older than a day; set
+  # AD_S2_API_KEY before enabling (the shared anonymous rate limit is tight).
+  - name: Semantic Scholar
+    type: semantic_scholar
+    enabled: false
+    options:
+      refresh_hours: 12

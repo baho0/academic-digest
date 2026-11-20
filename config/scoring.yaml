@@ -1,0 +1,136 @@
+# Scoring / selection configuration.
+# Everything here can be tuned without touching code. Run
+#   academicdigest preview
+# (or open a digest in the web UI with "all candidates") to see how each
+# paper's score was built.
+
+engine: rules          # rules | hybrid  (hybrid: an LLM re-rates the top papers, needs AD_LLM_PROVIDER)
+summarizer: excerpt    # excerpt | llm   (llm: needs AD_LLM_PROVIDER)
+excerpt_max_chars: 350
+
+# ---------------------------------------------------------------- LLM (only used when enabled above)
+llm:
+  rerank_top_k: 30       # how many top rule-scored papers the LLM rates
+  weight: 1.0            # score += (rating - center) * weight
+  center: 5
+  summary_max_chars: 400
+  language: English      # summary language, e.g. Turkish
+  profile: |
+    Researcher interested in large language models, AI agents, ML systems
+    and security. Prefers papers with strong empirical results, released code,
+    and ideas that change how things are built; skips incremental benchmark tweaks.
+
+# ---------------------------------------------------------------- clustering
+dedupe:
+  title_similarity: 92   # rapidfuzz token_sort_ratio for papers without an arXiv id (0-100)
+  min_title_tokens: 5
+  window_hours: 72       # cluster/enrich over this window; only papers with something
+                         # new in the last AD_LOOKBACK_HOURS become candidates
+
+# ---------------------------------------------------------------- signals
+weights:
+  # Best tier among the cluster's sources (arXiv alone = tier 3 = 0 points:
+  # a paper needs some other signal to make it).
+  tier: {1: 4.0, 2: 1.0, 3: 0.0}
+
+  # Each *additional* independent source covering the same paper (HF + HN...).
+  coverage_per_source: 2.0
+  coverage_max_sources: 3
+  coverage_max_tier: 2     # only tier 1-2 sources count: arXiv lists everything, it endorses nothing
+
+  # Engagement, log10-scaled: weight * log10(value + 1)
+  engagement:
+    hf_upvotes: 2.5        # 10 ≈ +2.6, 50 ≈ +4.3
+    hn_points: 1.6         # 100 ≈ +3.2
+    hn_comments: 0.6
+    s2_max_hindex: 1.2     # only with the Semantic Scholar enricher: h=40 ≈ +1.9
+    s2_citations: 1.0
+
+  code_available: 1.0    # code link from HF, the arXiv comment or the abstract
+
+  # Freshness: final score is multiplied by 0.5 ** ((age_hours - grace) / half_life)
+  freshness:
+    grace_hours: 36
+    half_life_hours: 72
+
+# Positive signals. `field`: title (default) | abstract | venue (arXiv comment +
+# journal ref) | any. Matched case-insensitively. Total boost is capped.
+boost_cap: 4.0
+boost_patterns:
+  - {field: venue, pattern: '\b(NeurIPS|ICML|ICLR|CVPR|ICCV|ECCV|ACL|EMNLP|NAACL|COLM|KDD|AAAI|IJCAI|OSDI|SOSP|NSDI|EuroSys|SIGMOD|VLDB|USENIX Security|CCS|NDSS|IEEE S&P|STOC|FOCS|SODA)\b', weight: 2.0, label: top-venue, case: sensitive}
+  - {field: venue, pattern: '\b(oral|spotlight|best paper|outstanding paper)\b', weight: 1.0, label: highlight}
+  - {field: venue, pattern: '\b(accepted|to appear)\b', weight: 0.5, label: accepted}
+  - {field: abstract, pattern: '\b(open[- ]weights?|we (publicly )?release|we open[- ]source)\b', weight: 0.5, label: release}
+
+# Negative signals. Not capped.
+penalty_patterns:
+  - {field: venue, pattern: '\bwithdrawn\b', weight: -10.0, label: withdrawn}
+  - {pattern: '^(author |publisher )?(correction|erratum|corrigendum|retraction note|expression of concern)\b', weight: -8.0, label: correction}
+  - {pattern: '^(daily briefing|news & views|editorial|research highlight|book review|obituary)\b', weight: -6.0, label: not-research}
+
+# Personal interests: title hit = weight, abstract-only hit = weight / 2. Capped.
+# This is the main knob for making the digest yours.
+interests:
+  cap: 4.0
+  patterns:
+    - {pattern: '\b(LLM|language model)s?\b.*\b(agent|agentic|tool use)\b|\bagents?\b.*\bLLMs?\b', weight: 2.0, label: llm-agents}
+    - {pattern: '\b(reasoning|chain[- ]of[- ]thought|test[- ]time (compute|scaling))\b', weight: 1.5, label: reasoning}
+    - {pattern: '\b(inference|serving|KV[- ]cache|speculative decoding|quantiz\w+)\b', weight: 1.5, label: efficient-inference}
+    - {pattern: '\b(jailbreak|prompt injection|red[- ]teaming|backdoor|adversarial)\b', weight: 1.5, label: ai-security}
+    - {pattern: '\b(mechanistic interpretability|sparse autoencoders?|interpretability)\b', weight: 1.5, label: interpretability}
+
+# Authors whose papers you never want to miss (accents / case are ignored).
+watch_authors:
+  weight: 4.0
+  names: []
+  # names: [Yoshua Bengio, Percy Liang, Nicholas Carlini]
+
+# Papers with no subject / keyword match at all (an HN link to an unrelated field).
+off_topic_penalty: -4.0
+
+# Domains linked from HN that are blogspam rather than papers.
+domain_penalty: -8.0
+blocked_domains:
+  - medium.com
+  - towardsdatascience.com
+
+# ---------------------------------------------------------------- classification
+# Each category: arXiv `subjects` (primary subject +4, cross-list +1) and
+# `keywords` (title +2, abstract +0.5). Order = order of sections in the email.
+categories:
+  ml:
+    title: AI & Machine Learning
+    subjects: [cs.LG, stat.ML, cs.AI, cs.NE, cs.RO, cs.MA]
+    keywords: ['machine learning', 'deep learning', 'reinforcement learning', '\bRL\b', 'neural network', 'diffusion', 'transformer', 'agent', 'robot', 'optimization', 'generalization', 'scaling law']
+  nlp:
+    title: Language & LLMs
+    subjects: [cs.CL, cs.IR]
+    keywords: ['\bLLMs?\b', 'language model', 'GPT', 'tokeni[sz]', 'translation', 'question answering', '\bRAG\b', 'retrieval', 'instruction', 'alignment', 'RLHF', 'speech']
+  vision:
+    title: Vision & Multimodal
+    subjects: [cs.CV, cs.MM, cs.GR, eess.IV]
+    keywords: ['image', 'video', 'vision', 'visual', 'multimodal', '\bVLMs?\b', '3D', 'segmentation', 'detection', 'text-to-image']
+  security:
+    title: Security & Privacy
+    subjects: [cs.CR]
+    keywords: ['security', 'privacy', 'attack', 'vulnerab', 'malware', 'jailbreak', 'prompt injection', 'adversarial', 'backdoor', 'fuzz', 'cryptograph', 'differential privacy']
+  systems:
+    title: Systems & Software
+    subjects: [cs.DC, cs.SE, cs.OS, cs.PL, cs.DB, cs.NI, cs.AR, cs.PF]
+    keywords: ['distributed', 'compiler', 'kernel', 'GPU', 'serving', 'database', 'software engineering', 'program synthesis', 'code generation', 'cluster', 'scheduling', 'storage']
+  science:
+    title: Science
+    subjects: [q-bio, physics, cond-mat, astro-ph, quant-ph, math]
+    keywords: ['protein', 'genom', 'cell', 'climate', 'quantum', 'material', 'molecul', 'clinical', 'brain', 'neuron']
+  default: science
+  hint_weight: 2.0        # a source's category_hint counts as this many points
+
+# ---------------------------------------------------------------- selection
+selection:
+  top_title: Today's highlights
+  top_n: 5                # highlights section
+  per_category: 5         # max papers per category section (after top_n)
+  min_score: 4.0          # quiet day? better a short email than filler
+  category_min_score: {}  # per-category override, e.g. {science: 4.5}
+  max_total: 25
+  send_empty: true        # false: no email on days nothing qualifies (weekends: arXiv has no announcements)
