@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ d.date }} · Academic Digest{% endblock %}
+{% block content %}
+<h1>{{ d.date }}</h1>
+<div class="sub">
+  {{ d.selected }} papers selected from {{ d.candidates }} candidates ·
+  <span class="status-{{ d.status }}">{{ d.status }}</span>
+  · <a href="{{ url_for('digest_email', date=d.date) }}">email version</a>
+  · {% if show_all %}<a href="{{ url_for('digest_page', date=d.date) }}">selected only</a>{% else %}<a href="{{ url_for('digest_page', date=d.date) }}?all=1">all candidates + scores</a>{% endif %}
+</div>
+<div class="pager">
+  <span>{% if d.prev %}<a href="{{ url_for('digest_page', date=d.prev) }}">← {{ d.prev }}</a>{% endif %}</span>
+  <span>{% if d.next %}<a href="{{ url_for('digest_page', date=d.next) }}">{{ d.next }} →</a>{% endif %}</span>
+</div>
+
+{% if show_all %}
+  <div class="section"><h2>Top {{ [d.all_candidates | length, 200] | min }} of {{ d.all_candidates | length }} candidates by score</h2>
+  {% for p in d.all_candidates[:200] %}{% with show_category=true, explain=true %}{% include "_paper.html" %}{% endwith %}{% endfor %}
+  </div>
+{% else %}
+  {% if not d.sections %}<div class="empty">Quiet day — no paper cleared the threshold.</div>{% endif %}
+  {% for s in d.sections %}
+  <div class="section{% if s.key == 'top' %} top{% endif %}"><h2>{{ s.title }}</h2>
+    {% for p in s.papers %}{% with show_category=(s.key == 'top'), explain=false %}{% include "_paper.html" %}{% endwith %}{% endfor %}
+  </div>
+  {% endfor %}
+{% endif %}
+{% endblock %}

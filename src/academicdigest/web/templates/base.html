@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>{% block title %}Academic Digest{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+<link rel="alternate" type="application/atom+xml" title="Academic Digest" href="{{ url_for('feed') }}">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="{{ url_for('index') }}">Academic Digest</a>
+  <nav>
+    <a href="{{ url_for('archive') }}">Archive</a>
+    <a href="{{ url_for('papers_page') }}">Papers</a>
+    <a href="{{ url_for('status_page') }}">Status</a>
+    <a href="{{ url_for('feed') }}">Feed</a>
+    <a href="/api/docs">API</a>
+  </nav>
+</div></header>
+<main class="wrap">
+{% block content %}{% endblock %}
+</main>
+<footer class="site">academicdigest {{ version }}</footer>
+</body>
+</html>

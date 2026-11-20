@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Academic Digest</title>
+  <id>{{ base }}/</id>
+  <link rel="alternate" href="{{ base }}/"/>
+  <link rel="self" href="{{ base }}/feed.xml"/>
+  <updated>{{ updated }}</updated>
+  <author><name>Academic Digest</name></author>
+{% for d in digests %}
+  <entry>
+    <title>{{ d.subject }}</title>
+    <id>{{ base }}/digests/{{ d.date }}</id>
+    <link rel="alternate" href="{{ base }}/digests/{{ d.date }}"/>
+    <updated>{{ aware(d.sent_at or d.created_at).isoformat() }}</updated>
+    <content type="html">{{ d.html }}</content>
+  </entry>
+{% endfor %}
+</feed>

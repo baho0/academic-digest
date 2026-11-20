@@ -1,0 +1,25 @@
+{# One paper card. Needs: p (cluster dict), show_category (bool), explain (bool) #}
+<div class="paper{% if not p.selected and explain %} dim{% endif %}">
+  <a class="title" href="{{ p.url }}">{{ p.title }}</a>
+  <div class="meta">
+    {% if show_category %}<span class="tag">{{ p.category_title }}</span> {% endif %}
+    {{ (p.authors or []) | short_authors }}{% if p.venue %} · <i>{{ p.venue }}</i>{% endif %}
+  </div>
+  <div class="links">
+    {% if p.arxiv_id %}<a href="https://arxiv.org/abs/{{ p.arxiv_id }}">arXiv:{{ p.arxiv_id }}</a>{% elif p.doi %}<a href="https://doi.org/{{ p.doi }}">doi:{{ p.doi }}</a>{% else %}{{ p.url | domain }}{% endif %}
+    {% if p.pdf_url %} · <a href="{{ p.pdf_url }}">PDF</a>{% endif %}
+    {% if p.code_url %} · <a href="{{ p.code_url }}">Code</a>{% endif %}
+    {% for name, link in p.discussions or [] %} · <a href="{{ link }}">{{ name }}{% if 'huggingface' in link and p.metrics.hf_upvotes %} ({{ p.metrics.hf_upvotes | int }} ▲){% elif 'ycombinator' in link and p.metrics.hn_points %} ({{ p.metrics.hn_points | int }} pts){% endif %}</a>{% endfor %}
+    {% if p.item_ids %} · <a href="{{ url_for('paper_page', item_id=p.item_ids[0]) }}">details</a>{% endif %}
+  </div>
+  {% if p.summary %}<div class="summary">{{ p.summary }}</div>{% endif %}
+  {% if p.abstract and p.abstract != p.summary %}
+  <details class="abstract"><summary>Abstract</summary>{{ p.abstract }}</details>
+  {% endif %}
+  {% if explain %}
+  <div class="score">score {{ '%.1f' | format(p.score) }} =
+    {% for b in p.breakdown %}<span class="{{ 'pos' if b.delta > 0 else 'neg' }}">{{ b.label }} {{ '%+.1f' | format(b.delta) }}</span>{% if not loop.last %}, {% endif %}{% endfor %}
+    · [{{ (p.sources or []) | join(', ') }}]{% if p.notes and p.notes.llm_reason %} · llm: {{ p.notes.llm_reason }}{% endif %}
+  </div>
+  {% endif %}
+</div>

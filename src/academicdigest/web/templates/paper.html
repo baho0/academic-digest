@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{{ p.title }} · Academic Digest{% endblock %}
+{% block content %}
+<h1>{{ p.title }}</h1>
+<div class="sub">{{ p.authors | join(', ') }}</div>
+<div class="paper">
+  <div class="links">
+    <a href="{{ p.url }}">{{ p.url | domain }}</a>
+    {% if p.arxiv_id %} · <a href="https://arxiv.org/abs/{{ p.arxiv_id }}">arXiv:{{ p.arxiv_id }}</a> · <a href="https://arxiv.org/pdf/{{ p.arxiv_id }}">PDF</a>{% endif %}
+    {% if p.doi %} · <a href="https://doi.org/{{ p.doi }}">doi:{{ p.doi }}</a>{% endif %}
+    {% if p.code_url %} · <a href="{{ p.code_url }}">Code</a>{% endif %}
+  </div>
+  {% if p.journal_ref or p.comment %}<div class="meta">{% if p.journal_ref %}<i>{{ p.journal_ref }}</i>{% endif %}{% if p.comment %}{% if p.journal_ref %} · {% endif %}{{ p.comment }}{% endif %}</div>{% endif %}
+  {% if p.subjects %}<div class="meta">{% for s in p.subjects %}<span class="tag">{{ s }}</span> {% endfor %}</div>{% endif %}
+  {% if p.abstract %}<div class="summary">{{ p.abstract }}</div>{% endif %}
+</div>
+
+<div class="section"><h2>Seen in</h2>
+<div class="table-wrap"><table class="list">
+<tr><th>Source</th><th>First seen</th><th>Signals</th><th></th></tr>
+{% for s in p.sources %}
+<tr>
+  <td>{{ s.source }}</td>
+  <td>{{ (s.fetched_at or '')[:16] | replace('T', ' ') }}</td>
+  <td>{% for k, v in s.metrics.items() %}{{ k }}={{ v | int }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+  <td>{% if s.discussion_url %}<a href="{{ s.discussion_url }}">discussion</a>{% endif %}</td>
+</tr>
+{% endfor %}
+</table></div>
+</div>
+
+{% if p.digests %}
+<div class="section"><h2>In digests</h2>
+{% for a in p.digests %}<a href="{{ url_for('digest_page', date=a.date) }}"><span class="tag{% if a.section == 'top' %} top{% endif %}">{{ a.date }} · {{ categories.get(a.section, 'highlights' if a.section == 'top' else a.section) }} · {{ '%.1f' | format(a.score) }}</span></a> {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

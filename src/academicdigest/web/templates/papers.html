@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Papers · Academic Digest{% endblock %}
+{% block content %}
+<h1>Papers</h1>
+<div class="sub">Everything collected, not only what made a digest.</div>
+<form class="search" method="get">
+  <input type="search" name="q" value="{{ q }}" placeholder="title, abstract, author or arXiv id" autofocus>
+  <select name="days">
+    {% for n, label in [(7, 'last 7 days'), (30, 'last 30 days'), (365, 'last year'), (0, 'all time')] %}
+    <option value="{{ n }}"{% if days == n %} selected{% endif %}>{{ label }}</option>
+    {% endfor %}
+  </select>
+  <select name="source">
+    <option value="">all sources</option>
+    {% for s in sources %}<option{% if s == source %} selected{% endif %}>{{ s }}</option>{% endfor %}
+  </select>
+  <label class="sub"><input type="checkbox" name="in_digest" value="true"{% if in_digest %} checked{% endif %}> in a digest</label>
+  <button type="submit">Search</button>
+</form>
+{% if not papers %}<div class="empty">No papers found.</div>{% endif %}
+{% for p in papers %}
+<div class="paper">
+  <a class="title" href="{{ url_for('paper_page', item_id=p.id) }}">{{ p.title }}</a>
+  <div class="meta">{{ p.authors | short_authors }}{% if p.journal_ref %} · <i>{{ p.journal_ref }}</i>{% endif %}</div>
+  <div class="links">
+    {{ p.source }} · {{ (p.published_at or p.fetched_at or '')[:10] }}
+    {% if p.arxiv_id %} · <a href="https://arxiv.org/abs/{{ p.arxiv_id }}">arXiv:{{ p.arxiv_id }}</a>{% endif %}
+    {% if p.subjects %} · {{ p.subjects[:3] | join(', ') }}{% endif %}
+    {% for a in p.digests %} · <a href="{{ url_for('digest_page', date=a.date) }}"><span class="tag{% if a.section == 'top' %} top{% endif %}">digest {{ a.date }}</span></a>{% endfor %}
+  </div>
+</div>
+{% endfor %}
+<div class="pager">
+  {% set qs = 'q=' ~ (q | urlencode) ~ '&days=' ~ days ~ '&source=' ~ (source | urlencode) ~ ('&in_digest=true' if in_digest else '') %}
+  <span>{% if offset > 0 %}<a href="?{{ qs }}&offset={{ [offset - 50, 0] | max }}">← newer</a>{% endif %}</span>
+  <span>{% if papers | length == 50 %}<a href="?{{ qs }}&offset={{ offset + 50 }}">older →</a>{% endif %}</span>
+</div>
+{% endblock %}

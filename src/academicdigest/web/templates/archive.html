@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Archive · Academic Digest{% endblock %}
+{% block content %}
+<h1>Archive</h1>
+{% if not digests %}<div class="empty">No digests yet.</div>{% else %}
+<div class="table-wrap"><table class="list">
+<tr><th>Date</th><th>Papers</th><th>Candidates</th><th>Status</th></tr>
+{% for r in digests %}
+<tr>
+  <td><a href="{{ url_for('digest_page', date=r.date) }}">{{ r.date }}</a></td>
+  <td>{{ r.selected }}</td><td>{{ r.candidates }}</td>
+  <td class="status-{{ r.status }}">{{ r.status }}</td>
+</tr>
+{% endfor %}
+</table></div>
+<div class="pager">
+  <span>{% if offset > 0 %}<a href="?offset={{ [offset - 60, 0] | max }}">← newer</a>{% endif %}</span>
+  <span>{% if digests | length == 60 %}<a href="?offset={{ offset + 60 }}">older →</a>{% endif %}</span>
+</div>
+{% endif %}
+{% endblock %}
