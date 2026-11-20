@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/H042udy0wq7MeAhaKzJmW8iP6uI</id>
+  <title>arXiv Query: search_query=&amp;id_list=2611.24943,2611.24959&amp;start=0&amp;max_results=10</title>
+  <updated>2026-11-20T10:09:53Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=10&amp;id_list=2611.24943,2611.24959" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>10</opensearch:itemsPerPage>
+  <opensearch:totalResults>2</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2611.24959v1</id>
+    <title>ICARE: cross-domain text classification with incremental class-aware representation and distillation learning</title>
+    <updated>2026-11-11T13:42:02Z</updated>
+    <link href="https://arxiv.org/abs/2611.24959v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2611.24959v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The rise of powerful, fine-tuned large language models (LLMs) necessitates robust natural language inference (NLI) systems. These NLI systems ideally train across various tasks, encompassing diverse concepts like sentiment analysis, news classification, and coreference resolution. However, this continual, multi-tasking approach can lead to catastrophic forgetting, where previously learned tasks are lost, especially in domains lacking specific labels. Rehearsing past examples with labels can further exacerbate this issue by causing overfitting, hindering the system's ability to classify new categories. To tackle these challenges, this research proposes ICARE, a novel framework with two key components: an instance selection module and a knowledge distillation method. The former is based on representation learning, which meticulously selects training examples to present to the NLI system. The latter, knowledge distillation with feature and logit-level transfer, facilitates knowledge transfer between tasks. This leverages pruning techniques and optimized objective functions to transfer both essential feature-level and decision-making (logit-level) knowledge, mitigating catastrophic forgetting while adapting to new patterns. Extensive evaluations on benchmark text classification datasets have demonstrated ICARE's effectiveness. The framework achieves a significant improvement in target accuracy and reduction in the ``forgetting metric''. These results solidify ICARE's ability to preserve and leverage learned knowledge across diverse tasks, ultimately enhancing the adaptability and performance of NLI systems. The source code is available at https://github.com/CongSon01/ICARE_NLP.git</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-11-11T13:42:02Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <arxiv:journal_ref>International Journal of Machine Learning and Cybernetics, vol. 16, pp. 5277-5294, 2025</arxiv:journal_ref>
+    <author>
+      <name>Son Duong</name>
+    </author>
+    <author>
+      <name>Truong X. Tran</name>
+    </author>
+    <author>
+      <name>Hai-Anh Tran</name>
+    </author>
+    <arxiv:doi>10.1007/s13042-025-02572-6</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1007/s13042-025-02572-6" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2611.24943v1</id>
+    <title>LLM Complexity: Towards a Computational Complexity View of Large Language Model Inference</title>
+    <updated>2026-10-19T08:23:11Z</updated>
+    <link href="https://arxiv.org/abs/2611.24943v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2611.24943v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Computational complexity theory offers a principled framework for characterizing the efficiency of computational problems, and Large Language Models (LLMs) can similarly be viewed as computational systems executing a structured process of input, inference-time compute, and output. In this context, the number of generated tokens emerges as a natural and directly observable proxy for inference-time compute. However, we show that the tempting analogy between LLM token length and classical time complexity does not hold. We disprove the hypothesis that inference-time token usage aligns monotonically with classical time complexity, demonstrating a fundamental divergence grounded in how LLMs actually allocate computation during inference. To this end, we introduce LLM Complexity, a new metric designed to quantify problem complexity from the perspective of LLMs by characterizing the area bounded above by the accuracy-token curve. We find that diverse LLMs induce highly consistent task rankings under LLM Complexity, indicating that the metric captures stable notions of difficulty across models. We leverage this property to construct an easy-to-hard curriculum for supervised fine-tuning, which improves accuracy while reducing token consumption. Finally, we demonstrate that LLM Complexity generalizes to real-world tasks, producing more stable cross-model correlations than human-annotated difficulty labels.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-19T08:23:11Z</published>
+    <arxiv:comment>10 pages, 20 with Appendix</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Yu-Hung Wu</name>
+    </author>
+    <author>
+      <name>Shao-Xiang Yuan</name>
+    </author>
+    <author>
+      <name>Chan-Hung Yu</name>
+    </author>
+    <author>
+      <name>Zih-Ching Chen</name>
+    </author>
+    <author>
+      <name>Kuan-Hao Huang</name>
+    </author>
+    <author>
+      <name>Shao-Hua Sun</name>
+    </author>
+  </entry>
+</feed>

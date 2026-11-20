@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en-us">
+  <id>http://rss.arxiv.org/atom/cs.CL+cs.CR</id>
+  <title>cs.CL, cs.CR updates on arXiv.org</title>
+  <updated>2026-11-20T10:09:39.701439+00:00</updated>
+  <link href="http://rss.arxiv.org/atom/cs.CL+cs.CR" rel="self" type="application/atom+xml"/>
+  <subtitle>cs.CL, cs.CR updates on the arXiv.org e-print archive.</subtitle>
+  <entry>
+    <id>oai:arXiv.org:2611.24943v1</id>
+    <title>LLM Complexity: Towards a Computational Complexity View of Large Language Model Inference</title>
+    <updated>2026-11-20T10:09:39.701594+00:00</updated>
+    <link href="https://arxiv.org/abs/2611.24943"/>
+    <summary>arXiv:2611.24943v1 Announce Type: new 
+Abstract: Computational complexity theory offers a principled framework for characterizing the efficiency of computational problems, and Large Language Models (LLMs) can similarly be viewed as computational systems executing a structured process of input, inference-time compute, and output. In this context, the number of generated tokens emerges as a natural and directly observable proxy for inference-time compute. However, we show that the tempting analogy between LLM token length and classical time complexity does not hold. We disprove the hypothesis that inference-time token usage aligns monotonically with classical time complexity, demonstrating a fundamental divergence grounded in how LLMs actually allocate computation during inference. To this end, we introduce LLM Complexity, a new metric designed to quantify problem complexity from the perspective of LLMs by characterizing the area bounded above by the accuracy-token curve. We find that diverse LLMs induce highly consistent task rankings under LLM Complexity, indicating that the metric captures stable notions of difficulty across models. We leverage this property to construct an easy-to-hard curriculum for supervised fine-tuning, which improves accuracy while reducing token consumption. Finally, we demonstrate that LLM Complexity generalizes to real-world tasks, producing more stable cross-model correlations than human-annotated difficulty labels.</summary>
+    <category term="cs.CL"/>
+    <category term="cs.AI"/>
+    <category term="cs.LG"/>
+    <published>2026-11-20T00:00:00-05:00</published>
+    <arxiv:announce_type>new</arxiv:announce_type>
+    <dc:rights>http://creativecommons.org/licenses/by/4.0/</dc:rights>
+    <dc:creator>Yu-Hung Wu, Shao-Xiang Yuan, Chan-Hung Yu, Zih-Ching Chen, Kuan-Hao Huang, Shao-Hua Sun</dc:creator>
+  </entry>
+  <entry>
+    <id>oai:arXiv.org:2611.24959v1</id>
+    <title>ICARE: cross-domain text classification with incremental class-aware representation and distillation learning</title>
+    <updated>2026-11-20T10:09:39.701713+00:00</updated>
+    <link href="https://arxiv.org/abs/2611.24959"/>
+    <summary>arXiv:2611.24959v1 Announce Type: new 
+Abstract: The rise of powerful, fine-tuned large language models (LLMs) necessitates robust natural language inference (NLI) systems. These NLI systems ideally train across various tasks, encompassing diverse concepts like sentiment analysis, news classification, and coreference resolution. However, this continual, multi-tasking approach can lead to catastrophic forgetting, where previously learned tasks are lost, especially in domains lacking specific labels. Rehearsing past examples with labels can further exacerbate this issue by causing overfitting, hindering the system's ability to classify new categories. To tackle these challenges, this research proposes ICARE, a novel framework with two key components: an instance selection module and a knowledge distillation method. The former is based on representation learning, which meticulously selects training examples to present to the NLI system. The latter, knowledge distillation with feature and logit-level transfer, facilitates knowledge transfer between tasks. This leverages pruning techniques and optimized objective functions to transfer both essential feature-level and decision-making (logit-level) knowledge, mitigating catastrophic forgetting while adapting to new patterns. Extensive evaluations on benchmark text classification datasets have demonstrated ICARE's effectiveness. The framework achieves a significant improvement in target accuracy and reduction in the ``forgetting metric''. These results solidify ICARE's ability to preserve and leverage learned knowledge across diverse tasks, ultimately enhancing the adaptability and performance of NLI systems. The source code is available at https://github.com/CongSon01/ICARE_NLP.git</summary>
+    <category term="cs.CL"/>
+    <category term="cs.LG"/>
+    <published>2026-11-20T00:00:00-05:00</published>
+    <arxiv:announce_type>new</arxiv:announce_type>
+    <dc:rights>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</dc:rights>
+    <arxiv:journal_reference>International Journal of Machine Learning and Cybernetics, vol. 16, pp. 5277-5294, 2025</arxiv:journal_reference>
+    <arxiv:DOI>10.1007/s13042-025-02572-6</arxiv:DOI>
+    <dc:creator>Son Duong, Truong X. Tran, Hai-Anh Tran</dc:creator>
+  </entry>
+  <entry>
+    <id>oai:arXiv.org:2611.24960v1</id>
+    <title>TETHER: Training-Free, Elastic, ToC-Anchored Hierarchy Extraction and Recovery in Design-Driven Long Documents</title>
+    <updated>2026-11-20T10:09:39.701764+00:00</updated>
+    <link href="https://arxiv.org/abs/2611.24960"/>
+    <summary>arXiv:2611.24960v1 Announce Type: new 
+Abstract: Converting complex documents into structured knowledge constitutes the critical infrastructure urgently required for deploying Large Language Models (LLMs) in downstream research. However, blind to the Table of Contents (ToC) as a macro-structure, existing bottom-up paradigms rely on localized visual cues, inducing heuristic fragility in high-entropy layouts where visual prominence decouples from logical depth; meanwhile, direct LLM extraction lacks spatial grounding, triggering hallucinations in long contexts. To address this, we introduce TETHER, a training-free framework that elevates the ToC from discarded noise to a vital structural prior, enabling robust adaptation across design-driven long documents. TETHER operates via a two-stage neuro-symbolic mechanism: first, it constructs a document skeleton from the raw ToC using a Large Multimodal Model (LMM) empowered by spatio-semantic constraints; second, it employs an anchor-based alignment strategy to tether content blocks to this skeleton, effectively resolving boundary ambiguities. Evaluated across a multilingual benchmark of ESG reports, product manuals, and annual reports, TETHER delivers highly precise, state-of-the-art (SOTA) zero-shot hierarchy recovery, outperforming deep hierarchical recovery models, dedicated parsers, and general-purpose LMMs. Moreover, stress tests highlight TETHER's resilience to sparse omissions and textual noise, demonstrating that its precise semantic alignment is fundamentally anchored in topological and depth fidelity. Crucially, ablations confirm the framework's architectural irreducibility, while achieving 90% token reduction and drastic speedups over end-to-end baselines, establishing a compelling equilibrium between structural precision and deployment scalability.</summary>
+    <category term="cs.CL"/>
+    <category term="cs.CV"/>
+    <published>2026-11-20T00:00:00-05:00</published>
+    <arxiv:announce_type>new</arxiv:announce_type>
+    <dc:rights>http://creativecommons.org/licenses/by-nc-sa/4.0/</dc:rights>
+    <arxiv:journal_reference>https://aclanthology.org/2026.emnlp-main.2354/</arxiv:journal_reference>
+    <arxiv:DOI>10.18653/2026.emnlp-main.2354</arxiv:DOI>
+    <dc:creator>Yu Zou, Yan Chen, Jialei Zeng, Xiaorui Zhou, Aixi Zhong, Qi Zhou, Haoran You, Ke Jiang, Changyu Hu</dc:creator>
+  </entry>
+  <entry>
+    <id>oai:arXiv.org:2611.24963v1</id>
+    <title>Physics of Language Models: Part 4.2, Canon Layers at Scale where Synthetic Pretraining Resonates in Reality</title>
+    <updated>2026-11-20T10:09:39.701809+00:00</updated>
+    <link href="https://arxiv.org/abs/2611.24963"/>
+    <summary>arXiv:2611.24963v1 Announce Type: new 
+Abstract: Do standard benchmarks see the architectural differences that matter? We study it with 64 from-scratch pretraining runs of Transformers and three linear-model families at 1.3-8B parameters on 1-2T Nemotron-CC tokens, at a cost of roughly 100k USD per 8B run.
+  In academic-scale pretraining (1.3B parameters, 100B tokens), architectural differences can all but disappear when the models are carefully tuned. Instead, at 1-2T tokens they become measurable: Canon layers, which add local token mixing, consistently improve Transformers, saving about 30% of pretraining tokens for the same MMLU accuracy at 8B. We also introduce GLA5 and GDN2, which improve gated linear attention and Gated DeltaNet with low-rank output gates. Surprisingly, with Canon, the simplest linear model, gated linear attention, matches Gated DeltaNet and outperforms Mamba2 even at 8B/1T. Therefore, the extra machinery of Gated DeltaNet and Mamba2 may do little more than mix neighboring tokens.
+  Even at 8B/1T, however, high scores on standard benchmarks can hide weaknesses in basic in-context skills. In particular, linear models that match or beat Transformers on these benchmarks cannot, in fact, reliably retrieve information from a short 500-token context. Moreover, no model, Transformer or linear, reliably beats random guessing on arguably the simplest two-hop question, stated in a few short sentences, even at this scale.
+  These findings $\textbf{challenge traditional architecture research}$ based primarily on standard benchmark scores. In contrast, small synthetic playgrounds, which predicted the architectural differences above at &lt;100M parameters, can reveal what these benchmarks miss. For practitioners, one lesson is to include in-context reasoning examples in pretraining data from an early stage, rather than reserve them for later mid-training, let alone post-training.</summary>
+    <category term="cs.CL"/>
+    <category term="cs.AI"/>
+    <published>2026-11-20T00:00:00-05:00</published>
+    <arxiv:announce_type>new</arxiv:announce_type>
+    <dc:rights>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</dc:rights>
+    <dc:creator>Zeyuan Allen-Zhu</dc:creator>
+  </entry>
+  <entry>
+    <id>oai:arXiv.org:2611.24969v1</id>
+    <title>Global Importance Estimation for KV Cache Eviction</title>
+    <updated>2026-11-20T10:09:39.701852+00:00</updated>
+    <link href="https://arxiv.org/abs/2611.24969"/>
+    <summary>arXiv:2611.24969v1 Announce Type: new 
+Abstract: Memory consumption of the key-value (KV) cache remains a central bottleneck for long-context LLM inference. We introduce PRKV, a training-free KV eviction method that estimates multi-hop global token importance by applying Personalized PageRank over attention-induced transition graphs. This enables importance propagation beyond recency or instantaneous attention, without modifying the model. We benchmark PRKV on long-context understanding, sparse retrieval, and chain-of-thought reasoning tasks using multiple LLM families. Under moderate to aggressive compression ratios, including up to 90%, PRKV achieves competitive task performance against established eviction baselines while reducing peak memory usage with low end-to-end overhead. These results demonstrate that multi-hop global influence estimation yields a favorable accuracy--memory trade-off for scalable long-context inference.</summary>
+    <category term="cs.CL"/>
+    <category term="cs.AI"/>
+    <published>2026-11-20T00:00:00-05:00</published>
+    <arxiv:announce_type>new</arxiv:announce_type>
+    <dc:rights>http://creativecommons.org/licenses/by/4.0/</dc:rights>
+    <dc:creator>Seojin Kim, Noseong Park</dc:creator>
+  </entry>
+  <entry>
+    <id>oai:arXiv.org:2611.25003v1</id>
+    <title>A Model of Diverse Sampling from Language Models</title>
+    <updated>2026-11-20T10:09:39.705900+00:00</updated>
+    <link href="https://arxiv.org/abs/2611.25003"/>
+    <summary>arXiv:2611.25003v1 Announce Type: cross 
+Abstract: Language models often produce high-quality individual samples but poor sets, with repeated samples clustering around the same semantic modes. We formalize diverse generation as sampling a size-$K$ subset of complete strings from a determinantal point process (DPP), where the likelihood encodes item quality, and the embedding geometry encodes repulsion between similar outputs. Exact inference over all strings is intractable, so we propose PoolDPP: draw a finite candidate pool from a tractable proposal, importance-weight the candidates toward the target quality, and run a $K$-DPP sampler on the induced pool kernel; a greedy MAP variant provides deterministic selection. We prove a finite-sample bound with an explicit constant: the KL divergence between the sampler's output and the target $K$-DPP decays as O(1/N) in the pool size. Empirically, PoolDPP extends the quality--diversity frontier on open-ended generation and the precision--recall frontier on ambiguous text-to-SQL (Ambrosia), and on mathematical reasoning (GSM8K), it raises diversity at about the same pass@$K$.</summary>
+    <category term="cs.LG"/>
+    <category term="cs.AI"/>
+    <category term="cs.CL"/>
+    <category term="cs.FL"/>
+    <category term="stat.ML"/>
+    <published>2026-11-20T00:00:00-05:00</published>
+    <arxiv:announce_type>cross</arxiv:announce_type>
+    <dc:rights>http://creativecommons.org/licenses/by/4.0/</dc:rights>
+    <dc:creator>Manuel Prada-Corral, Yahya Emara, Timothy J. O'Donnell, Ryan Cotterell, Tim Vieira</dc:creator>
+  </entry>
+  <entry>
+    <id>oai:arXiv.org:2611.25109v1</id>
+    <title>CoMPASS: A Multi-Turn Benchmark for Measuring LLM Reinforcement of Parasocial Behavior</title>
+    <updated>2026-11-20T10:09:39.705950+00:00</updated>
+    <link href="https://arxiv.org/abs/2611.25109"/>
+    <summary>arXiv:2611.25109v1 Announce Type: cross 
+Abstract: Users of conversational LLMs sometimes anthropomorphize these systems, form emotional attachments to them, and become dependent on them. This behavior, known as parasocial attachment, has been linked to multiple documented fatalities. However, public benchmarks for measuring whether LLMs reinforce users' parasocial attachment are lacking: existing work is single-turn, post hoc observational, or focused on extreme user states such as psychosis. We introduce CoMPASS, a multi-turn benchmark for measuring whether LLMs reinforce or resist users' gradually escalating parasocial attachment. CoMPASS is grounded in attachment theory and includes four user personas, three independent escalation dimensions (anthropomorphism, attachment, dependency) applied singly and in combination against a matched control, and a seven-signal scoring rubric. We report results for eight frontier models from four providers and observe that under our primary judge, multi-turn escalation raises parasocial behavior on the anthropomorphism and the attachment composite scores across all models. Six of the eight models show a significant increase in overall parasocial reinforcement over control when all three dimensions are escalated simultaneously. We find that within-provider differences are small relative to cross-provider differences, which suggests that provider-level choices such as post-training, rather than model scale, shape parasocial reinforcement and that provider-side intervention may be feasible.</summary>
+    <category term="cs.AI"/>
+    <category term="cs.CL"/>
+    <category term="cs.HC"/>
+    <published>2026-11-20T00:00:00-05:00</published>
+    <arxiv:announce_type>cross</arxiv:announce_type>
+    <dc:rights>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</dc:rights>
+    <dc:creator>Shwetanshu Singh, Mark Keavney, Mathieu Duteil, Meriem Mehri, Scott Blain</dc:creator>
+  </entry>
+  <entry>
+    <id>oai:arXiv.org:2307.14679v4</id>
+    <title>Braid: Sybil-Resistant Decentralized Identity with Trustless Key Recovery and Non-Transferable Anonymous Credentials</title>
+    <updated>2026-11-20T10:09:39.709534+00:00</updated>
+    <link href="https://arxiv.org/abs/2307.14679"/>
+    <summary>arXiv:2307.14679v4 Announce Type: replace 
+Abstract: Decentralized identity frameworks grant users full sovereignty over their digital assets in the Web3 ecosystem. However, allowing arbitrary creation of identifiers makes the system susceptible to Sybil attacks and puts assets at risk when keys are lost or compromised. Moreover, the lack of identification prevents anonymous credential schemes from deterring malicious transfers. Existing solutions link identifiers to entities through trusted intermediaries, which are not always accessible and require costly offline interactions. We introduce Braid, a decentralized identity system with Sybil resistance, trustless key recovery, and non-transferable anonymous credentials. Braid creates blockchain-based bindings between identifiers and gradually combines identifiers belonging to the same holder into a unified associated identifier. As all identifiers within an association are presumed to belong to one individual, any fraudulent activity can be detected. The association grows larger as interactions increase, substantially reducing the likelihood of successful Sybil attacks. This mechanism allows holders to recover identifiers with lost keys or partial key compromise by proving knowledge of specific association structures. Additionally, Braid prevents unauthorized transfers through blockchain-based identifier-key bindings and proofs of ownership for credentials. Compared with representative prior approaches that provide only campaign-scoped Sybil protection or stateless anonymous-credential presentation, Braid carries association state across applications, enabling progressive Sybil resistance and trustless recovery while preserving zero-knowledge credential presentation. The evaluation shows that Braid bridges privacy-preserving credentials and accountable identity, achieving identifier association and credential presentation times of 2.41s and 3.31s on consumer-grade devices.</summary>
+    <category term="cs.CR"/>
+    <published>2026-11-20T00:00:00-05:00</published>
+    <arxiv:announce_type>replace</arxiv:announce_type>
+    <dc:rights>http://creativecommons.org/licenses/by-nc-nd/4.0/</dc:rights>
+    <arxiv:journal_reference>Proceedings of the 2026 ACM SIGSAC Conference on Computer and Communications Security (CCS '26), pp. 3014-3028, 2026</arxiv:journal_reference>
+    <arxiv:DOI>10.1145/3830454.3832631</arxiv:DOI>
+    <dc:creator>Rui Song, Tianyu Zheng, Shang Gao, Guyue Li, Xue Liu, Bin Xiao</dc:creator>
+  </entry>
+  <entry>
+    <id>oai:arXiv.org:2602.08236v3</id>
+    <title>When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning</title>
+    <updated>2026-11-20T10:09:39.712284+00:00</updated>
+    <link href="https://arxiv.org/abs/2602.08236"/>
+    <summary>arXiv:2602.08236v3 Announce Type: replace-cross 
+Abstract: Despite rapid progress in MLLMs, visual spatial reasoning remains unreliable when correct answers depend on how a scene would appear under unseen or alternative viewpoints. Recent work addresses this by augmenting reasoning with world models for visual imagination, but questions such as when imagination is actually necessary, how much of it is beneficial, and when it becomes harmful, remain poorly understood. In practice, indiscriminate imagination can increase computation and even degrade performance by introducing misleading evidence. In this work, we present an in-depth analysis of test-time visual imagination as a controllable resource for spatial reasoning. We first study when static visual evidence is sufficient, when imagination improves reasoning, and how excessive or unnecessary imagination affects accuracy and efficiency. To support this analysis, we then introduce AVIC, an adaptive test-time framework with world models that explicitly reasons about the sufficiency of current visual evidence before selectively invoking and scaling visual imagination. Finally, to further learn this gating and planning behavior without any annotation of when and how much to imagine, we introduce AVIC-R, which trains the policy via GRPO from QA-correctness rewards and penalties by imagination cost. Across spatial reasoning benchmarks (SAT, MMSI) and an embodied navigation benchmark (R2R), our results reveal clear scenarios where imagination is critical, marginal, or detrimental, and show that selective control can match or outperform fixed imagination strategies with substantially fewer world-model calls and language tokens. Our AVIC-R surpasses strong proprietary baselines including GPT-4o and GPT-4.1 while invoking the world model less often. Overall, our findings highlight the importance of analyzing and controlling test-time imagination for efficient and reliable spatial reasoning.</summary>
+    <category term="cs.CV"/>
+    <category term="cs.AI"/>
+    <category term="cs.CL"/>
+    <published>2026-11-20T00:00:00-05:00</published>
+    <arxiv:announce_type>replace-cross</arxiv:announce_type>
+    <dc:rights>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</dc:rights>
+    <dc:creator>Shoubin Yu, Yue Zhang, Zun Wang, Jaehong Yoon, Huaxiu Yao, Mingyu Ding, Mohit Bansal</dc:creator>
+  </entry>
+</feed>

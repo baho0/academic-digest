@@ -1,0 +1,75 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns="http://purl.org/rss/1.0/" xmlns:admin="http://webns.net/mvcb/">
+    <channel rdf:about="http://feeds.nature.com/nature/rss/current">
+        <title>Nature</title>
+        <description>Nature is the foremost international weekly scientific journal in the world and is the flagship journal for Nature Portfolio. It publishes the finest peer-reviewed research in all fields of science and technology on the basis of its originality, importance, interdisciplinary interest, timeliness, accessibility, elegance and surprising conclusions. Nature publishes landmark papers, award winning news, leading comment and expert opinion on important, topical scientific news and events that enable readers to share the latest discoveries in science and evolve the discussion amongst the global scientific community.</description>
+        <link>http://feeds.nature.com/nature/rss/current</link>
+        <admin:generatorAgent rdf:resource="https://www.nature.com/"/>
+        <admin:errorReportsTo rdf:resource="mailto:feedback@nature.com"/>
+        <dc:publisher>Nature Publishing Group</dc:publisher>
+        <dc:language>en</dc:language>
+        <dc:rights>© 2026 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.</dc:rights>
+        <prism:publicationName>Nature</prism:publicationName>
+        
+        
+        <prism:copyright>© 2026 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.</prism:copyright>
+        <prism:rightsAgent>permissions@nature.com</prism:rightsAgent>
+        <image rdf:resource="https://www.nature.com/uploads/product/nature/rss.png"/>
+        <item rdf:about="https://www.nature.com/articles/d41586-026-03751-3">
+            <title><![CDATA[Lifting weights reduces muscle loss from obesity drugs]]></title>
+            <link>https://www.nature.com/articles/d41586-026-03751-3</link>
+            <content:encoded>
+                <![CDATA[<p>Nature, Published online: 20 November 2026; <a href="https://www.nature.com/articles/d41586-026-03751-3">doi:10.1038/d41586-026-03751-3</a></p>Resistance exercise could help middle-aged and older individuals to maintain muscle mass and strength during weight-loss treatment.]]></content:encoded>
+            <dc:title><![CDATA[Lifting weights reduces muscle loss from obesity drugs]]></dc:title>
+            
+            <dc:identifier>doi:10.1038/d41586-026-03751-3</dc:identifier>
+            <dc:source>Nature, Published online: 2026-11-20; | doi:10.1038/d41586-026-03751-3</dc:source>
+            <dc:date>2026-11-20</dc:date>
+            <prism:publicationName>Nature</prism:publicationName>
+            <prism:doi>10.1038/d41586-026-03751-3</prism:doi>
+            <prism:url>https://www.nature.com/articles/d41586-026-03751-3</prism:url>
+        </item>
+<item rdf:about="https://www.nature.com/articles/s41586-026-11388-5">
+            <title><![CDATA[Retraction Note: Detection of anisotropic cosmic structures on a gigaparsec scale]]></title>
+            <link>https://www.nature.com/articles/s41586-026-11388-5</link>
+            <content:encoded>
+                <![CDATA[<p>Nature, Published online: 19 November 2026; <a href="https://www.nature.com/articles/s41586-026-11388-5">doi:10.1038/s41586-026-11388-5</a></p>Retraction Note: Detection of anisotropic cosmic structures on a gigaparsec scale]]></content:encoded>
+            <dc:title><![CDATA[Retraction Note: Detection of anisotropic cosmic structures on a gigaparsec scale]]></dc:title>
+            <dc:creator>Francesco Sylos Labini</dc:creator><dc:creator>Marco Galoppo</dc:creator>
+            <dc:identifier>doi:10.1038/s41586-026-11388-5</dc:identifier>
+            <dc:source>Nature, Published online: 2026-11-19; | doi:10.1038/s41586-026-11388-5</dc:source>
+            <dc:date>2026-11-19</dc:date>
+            <prism:publicationName>Nature</prism:publicationName>
+            <prism:doi>10.1038/s41586-026-11388-5</prism:doi>
+            <prism:url>https://www.nature.com/articles/s41586-026-11388-5</prism:url>
+        </item>
+<item rdf:about="https://www.nature.com/articles/s41586-026-11445-z">
+            <title><![CDATA[Calcium catalysed nucleophilic fluorination]]></title>
+            <link>https://www.nature.com/articles/s41586-026-11445-z</link>
+            <content:encoded>
+                <![CDATA[<p>Nature, Published online: 19 November 2026; <a href="https://www.nature.com/articles/s41586-026-11445-z">doi:10.1038/s41586-026-11445-z</a></p>Calcium catalysed nucleophilic fluorination]]></content:encoded>
+            <dc:title><![CDATA[Calcium catalysed nucleophilic fluorination]]></dc:title>
+            <dc:creator>Job J. C. Struijs</dc:creator><dc:creator>Agamemnon E. Crumpton</dc:creator><dc:creator>Véronique Gouverneur</dc:creator><dc:creator>Simon Aldridge</dc:creator>
+            <dc:identifier>doi:10.1038/s41586-026-11445-z</dc:identifier>
+            <dc:source>Nature, Published online: 2026-11-19; | doi:10.1038/s41586-026-11445-z</dc:source>
+            <dc:date>2026-11-19</dc:date>
+            <prism:publicationName>Nature</prism:publicationName>
+            <prism:doi>10.1038/s41586-026-11445-z</prism:doi>
+            <prism:url>https://www.nature.com/articles/s41586-026-11445-z</prism:url>
+        </item>
+<item rdf:about="https://www.nature.com/articles/s41586-026-11421-7">
+            <title><![CDATA[Author Correction: Pharmacological inhibition of METTL1 as a therapy against solid and blood cancers]]></title>
+            <link>https://www.nature.com/articles/s41586-026-11421-7</link>
+            <content:encoded>
+                <![CDATA[<p>Nature, Published online: 19 November 2026; <a href="https://www.nature.com/articles/s41586-026-11421-7">doi:10.1038/s41586-026-11421-7</a></p>Author Correction: Pharmacological inhibition of METTL1 as a therapy against solid and blood cancers]]></content:encoded>
+            <dc:title><![CDATA[Author Correction: Pharmacological inhibition of METTL1 as a therapy against solid and blood cancers]]></dc:title>
+            <dc:creator>Eliza Yankova</dc:creator><dc:creator>Alexandra Sapetschnig</dc:creator><dc:creator>Beth Thomas</dc:creator><dc:creator>Siân Evans</dc:creator><dc:creator>Maria Eleftheriou</dc:creator><dc:creator>Malgorzata Gozdecka</dc:creator><dc:creator>Harry Fischl</dc:creator><dc:creator>Teresa Brevini</dc:creator><dc:creator>Rachael Wilson</dc:creator><dc:creator>Sarah J. Bucknell</dc:creator><dc:creator>Andrew Hutchin</dc:creator><dc:creator>Carmen M. Livi</dc:creator><dc:creator>George Giotopoulos</dc:creator><dc:creator>Ryan Asby</dc:creator><dc:creator>Laura Bond</dc:creator><dc:creator>Aleksandra Azevedo</dc:creator><dc:creator>Natalie Webster</dc:creator><dc:creator>Jack Rogan</dc:creator><dc:creator>James Russell</dc:creator><dc:creator>Byron Andrews</dc:creator><dc:creator>Hendrik Weisser</dc:creator><dc:creator>Joanna Baxter</dc:creator><dc:creator>Judith López-Luis</dc:creator><dc:creator>Giovanna Mantica</dc:creator><dc:creator>Jake Tobin</dc:creator><dc:creator>Diego Lopez-Leon</dc:creator><dc:creator>Dean C. Pask</dc:creator><dc:creator>Vidur Tandon</dc:creator><dc:creator>Richard Fosbeary</dc:creator><dc:creator>Sapphire Sawyer</dc:creator><dc:creator>Sunay Usluer</dc:creator><dc:creator>Nithila Joseph</dc:creator><dc:creator>Evangelia Stamou</dc:creator><dc:creator>Maria T. Bejar</dc:creator><dc:creator>Yogeshkumar Malam</dc:creator><dc:creator>Roland Rad</dc:creator><dc:creator>Elisa Laurenti</dc:creator><dc:creator>Juan Li</dc:creator><dc:creator>Maria P. Alcolea</dc:creator><dc:creator>David J. Adams</dc:creator><dc:creator>Walid T. Khaled</dc:creator><dc:creator>Fotios Sampaziotis</dc:creator><dc:creator>George S. Vassiliou</dc:creator><dc:creator>Brian J. P. Huntly</dc:creator><dc:creator>Oliver Rausch</dc:creator><dc:creator>Konstantinos Tzelepis</dc:creator>
+            <dc:identifier>doi:10.1038/s41586-026-11421-7</dc:identifier>
+            <dc:source>Nature, Published online: 2026-11-19; | doi:10.1038/s41586-026-11421-7</dc:source>
+            <dc:date>2026-11-19</dc:date>
+            <prism:publicationName>Nature</prism:publicationName>
+            <prism:doi>10.1038/s41586-026-11421-7</prism:doi>
+            <prism:url>https://www.nature.com/articles/s41586-026-11421-7</prism:url>
+        </item>
+    
+</rdf:RDF>
