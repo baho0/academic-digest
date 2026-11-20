@@ -1,0 +1,20 @@
+[Unit]
+Description=Academic Digest - collect papers from all sources and enrich them
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=academicdigest
+Group=academicdigest
+WorkingDirectory=/opt/academic-digest
+ExecStart=/opt/academic-digest/.venv/bin/academicdigest collect
+TimeoutStartSec=15min
+Nice=10
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/academic-digest/data

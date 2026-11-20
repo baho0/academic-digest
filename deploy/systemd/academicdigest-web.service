@@ -1,0 +1,25 @@
+[Unit]
+Description=Academic Digest - web UI, JSON API and Atom feed
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=academicdigest
+Group=academicdigest
+WorkingDirectory=/opt/academic-digest
+# Host/port from .env (AD_WEB_HOST / AD_WEB_PORT, default 127.0.0.1:8080).
+ExecStart=/opt/academic-digest/.venv/bin/academicdigest serve
+Restart=on-failure
+RestartSec=5
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+# SQLite in WAL mode needs to write its -wal/-shm files even when only reading.
+ReadWritePaths=/opt/academic-digest/data
+
+[Install]
+WantedBy=multi-user.target

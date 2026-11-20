@@ -1,0 +1,12 @@
+[Unit]
+Description=Academic Digest - send the digest every morning
+
+[Timer]
+# arXiv's RSS feeds switch to the new announcement at midnight US Eastern
+# (07:00 or 08:00 Istanbul depending on US daylight saving): 08:30 is after both.
+OnCalendar=*-*-* 08:30:00 Europe/Istanbul
+# If the server was down at 08:30, run at boot (idempotent per day).
+Persistent=true
+
+[Install]
+WantedBy=timers.target
