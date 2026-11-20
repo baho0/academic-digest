@@ -1,0 +1,36 @@
+ACADEMIC DIGEST — {{ digest.date }}
+{{ digest.count }} papers selected from {{ digest.candidates }} candidates
+{% if web_url %}
+Web: {{ web_url }}
+{% endif %}
+{% if not digest.sections %}
+
+Quiet day — no paper cleared the threshold.
+{% endif %}
+{% for section in digest.sections %}
+
+== {{ section.title | upper }} ==
+{% for c in section.clusters %}
+
+* {{ c.title }}{% if section.key == 'top' %} [{{ categories.get(c.category, c.category) }}]{% endif %}
+
+{% if c.authors %}
+  {{ c.authors | short_authors }}{% if c.venue %} — {{ c.venue }}{% endif %}
+
+{% endif %}
+  {{ c.url }}
+{% if c.summary %}
+  {{ c.summary }}
+{% endif %}
+{% if c.code_url %}
+  Code: {{ c.code_url }}
+{% endif %}
+{% for name, link in c.discussions %}
+  {{ name }}: {{ link }}
+{% endfor %}
+{% if explain %}
+  score {{ '%.1f' | format(c.score) }} = {% for b in c.breakdown %}{{ b }}{% if not loop.last %}, {% endif %}{% endfor %}
+
+{% endif %}
+{% endfor %}
+{% endfor %}
