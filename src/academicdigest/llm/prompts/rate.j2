@@ -1,0 +1,20 @@
+{# Context: paper (Cluster), profile (str: the reader's research interests) #}
+{% block system %}
+You triage new research papers for one reader. Rate how much this reader should read this paper today,
+from 0 (irrelevant or low quality) to 10 (must read: major result in their area).
+Consider relevance to the profile, novelty, strength of evidence and likely impact.
+Answer with a JSON object only: {"score": <integer 0-10>, "reason": "<one short sentence>"}
+{% endblock %}
+{% block prompt %}
+Reader profile:
+{{ profile }}
+
+Title: {{ paper.title }}
+Subjects: {{ paper.subjects | join(", ") }}
+{% if paper.venue %}
+Venue / comment: {{ paper.venue }}
+{% endif %}
+
+Abstract:
+{{ paper.abstract }}
+{% endblock %}
