@@ -1,0 +1,36 @@
+[project]
+name = "academicdigest"
+version = "0.1.0"
+description = "Daily digest of the research papers that actually matter, delivered by email and on the web."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27",
+    "feedparser>=6.0",
+    "rapidfuzz>=3.9",
+    "SQLAlchemy>=2.0",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "PyYAML>=6.0",
+    "Jinja2>=3.1",
+    "typer>=0.12",
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+]
+
+[project.scripts]
+academicdigest = "academicdigest.cli:app"
+
+[dependency-groups]
+dev = ["pytest>=8.2"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/academicdigest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
